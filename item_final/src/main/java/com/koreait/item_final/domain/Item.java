@@ -1,0 +1,35 @@
+package com.koreait.item_final.domain;
+
+import java.util.List;
+
+import lombok.Getter;
+import lombok.Setter;
+
+
+
+@Getter @Setter
+public class Item {
+	
+	private Long id;
+	private String itemName;
+	private Integer price; 
+	private Integer quantity;
+	
+	private Boolean open;
+	private List<String> regions; 
+	private ItemType itemType;
+	private String deliveryCode;
+	
+	public Item() {}
+
+	public Item(Long id, String itemName, Integer price, Integer quantity) {
+		super();
+		this.itemName = itemName;
+		this.price = price;
+		this.quantity = quantity;
+	}
+	
+	
+	
+	
+}

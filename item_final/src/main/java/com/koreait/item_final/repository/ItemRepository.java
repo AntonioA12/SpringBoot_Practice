@@ -32,4 +32,14 @@ public class ItemRepository {
 		return new ArrayList<Item>(store.values());
 	}
 
+
+	/*
+	 * 1-1 아아디로 상품조회
+	 * URI 에 GET 방식으로 명시된 id 값으로 
+	 * item 정보가 담긴 HashMap 변수 하나를 전부 호출한다 ( 해당 아이디 만 ) 
+	 */
+	public Item findById(Long itemId) {
+		return store.get(itemId);
+	}
+
 }

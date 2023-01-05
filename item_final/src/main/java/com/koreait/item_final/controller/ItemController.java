@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.koreait.item_final.domain.DeliveryCode;
@@ -35,6 +36,17 @@ public class ItemController {
 		model.addAttribute("items", items);
 		
 		return "basic/items";
+	}
+	
+	/*
+	 * 1-1 상품 아이템id로 조회
+	 */
+	@GetMapping("/{itemId}")
+	public String item(@PathVariable Long itemId, Model model ) {
+		Item item = itemRepository.findById(itemId);
+		model.addAttribute("item", item);
+		
+		return "basic/item";
 	}
 	
 	/*
@@ -91,4 +103,9 @@ public class ItemController {
 		deliveryCodes.add(new DeliveryCode("SLOW", "안전배송"));
 		return deliveryCodes;
 	}
+	
+	/*
+	 * 3. 상품 목록 저장 
+	 * 
+	 */
 }

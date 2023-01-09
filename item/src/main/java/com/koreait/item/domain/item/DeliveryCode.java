@@ -1,9 +1,7 @@
-package com.koreait.item_final.domain;
+package com.koreait.item.domain.item;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 @AllArgsConstructor

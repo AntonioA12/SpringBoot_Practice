@@ -42,4 +42,40 @@ public class ItemRepository {
 		return store.get(itemId);
 	}
 
+
+	/*
+	 * 3. 상품 저장 
+	 * Controller 영역에 선언된 item 객체 데이터를 가져와 
+	 * 테이블의 sequence 를 ++ 추가하고 
+	 * itemId 값에 맞춰 item 값을 저장하는 구조 
+	 * 
+	 * ! - 외부 DB 영역은 선언하지 않고 Spring 내부 DB 사용중 
+	 * 
+	 */
+	public Item save(Item item) {
+		item.setId(++sequence);
+		store.put(item.getId(), item);
+		return item;
+		
+	}
+
+	/*
+	 *  4. 상품 수정 
+	 */
+	
+	public void update(Long itemId , Item updateParam) {
+		
+		// 수정할 아이템 id 를 조회 
+		Item findItem = findById(itemId);
+		
+		// 조회된 id 의 값의 모든 정보를 사용자가 입력한 정보로 수정(=update) 
+		findItem.setItemName(updateParam.getItemName());
+		findItem.setPrice(updateParam.getPrice());
+		findItem.setQuantity(updateParam.getQuantity());
+		
+		findItem.setOpen(updateParam.getOpen());
+		findItem.setRegions(updateParam.getRegions());
+		findItem.setItemType(updateParam.getItemType());
+		findItem.setDeliveryCode(updateParam.getDeliveryCode());
+	}
 }

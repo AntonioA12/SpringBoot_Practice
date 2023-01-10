@@ -22,7 +22,7 @@ public class Item {
 	
 	public Item() {}
 
-	public Item(Long id, String itemName, Integer price, Integer quantity) {
+	public Item(String itemName, Integer price, Integer quantity) {
 		super();
 		this.itemName = itemName;
 		this.price = price;

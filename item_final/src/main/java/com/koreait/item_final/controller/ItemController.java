@@ -5,6 +5,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -158,7 +161,7 @@ public class ItemController {
 	
 	// 3-3 RedirectAttribute 사용
 	
-	@PostMapping("/add")
+//	@PostMapping("/add")
 	public String saveV3 (Item item, RedirectAttributes rttr) {
 		
 		Item saveItem = itemRepository.save(item);
@@ -254,7 +257,7 @@ public class ItemController {
 
 		Item saveItem =  itemRepository.save(item);
 		redirectAttributes.addAttribute("itemId", saveItem.getId());
-		redirectAttributes.addAttribute("status",true);
+		redirectAttributes.addAttribute("status",true); // 저장이 완료되면 true 값 
 		
 		return "redirect:/basic/items/{itemId}";
 	}
@@ -281,5 +284,19 @@ public class ItemController {
 		itemRepository.update(id, item);
 		
 		return "redirect:/basic/items/{itemId}";
+	}
+	
+	// 테스트용 데이터 추가
+	@PostConstruct
+	public void init() {
+//		System.out.println("초기화 메서드");
+		itemRepository.save( new Item( "testA", 10000, 10));
+		itemRepository.save( new Item( "testB" , 2000, 20));
+	}
+	
+	// 종료 메서드
+	@PreDestroy
+	public void destroy() {
+		System.out.println("종료 메서드");
 	}
 }
